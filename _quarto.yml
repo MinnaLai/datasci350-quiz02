@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "datasci350-quiz02"
+  title: "Gapminder Data Analysis"
   navbar:
     left:
       - href: index.qmd
