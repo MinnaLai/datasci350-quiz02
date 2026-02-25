@@ -1,0 +1,34 @@
+---
+title: "Country Analysis"
+---
+
+This page shows trends in life expectancy, GDP per capita, and population of China over time.
+
+```{python}
+import pandas as pd
+import matplotlib.pyplot as plt
+# Load data
+df = pd.read_csv("gapminder.csv")
+
+country = "China"
+subset = df[df['country'] == country]
+
+fig, ax1 = plt.subplots(figsize=(10,6))
+
+ax1.plot(subset['year'], subset['life_expectancy'], color='blue', marker='o', label='Life Expectancy')
+ax1.set_xlabel('Year')
+ax1.set_ylabel('Life Expectancy', color='blue')
+ax1.tick_params(axis='y', labelcolor='blue')
+
+ax2 = ax1.twinx()
+ax2.plot(subset['year'], subset['gdp_per_capita'], color='green', marker='x', label='GDP per Capita')
+ax2.plot(subset['year'], subset['population_millions'], color='red', marker='s', label='Population')
+ax2.set_ylabel('GDP per Capita & Population', color='black')
+ax2.tick_params(axis='y', labelcolor='black')
+
+fig.tight_layout()
+fig.suptitle(f"{country} Trends Over Time", y=1.05)
+ax1.legend(loc='upper left')
+ax2.legend(loc='upper right')
+plt.show()
+```
